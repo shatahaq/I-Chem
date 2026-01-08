@@ -278,12 +278,14 @@ with col1:
 # MQ-2 Card
 with col2:
     p = st.session_state.predictions['mq2']
+    # Translate label to Indonesian
+    label_text = "BAHAYA!" if p['label'] == "smoke" else "AMAN"
     color = "#ef4444" if p['label'] == "smoke" else "#10b981"
     icon = "🔥" if p['label'] == "smoke" else "✅"
     st.markdown(f"""
     <div class="sensor-card" style="background: linear-gradient(135deg, {color}, {color}cc);">
-        <h4 style="margin:0; opacity:0.9;">{icon} MQ-2 (Smoke)</h4>
-        <h2 style="margin:10px 0; font-size:2rem;">{p['label'].upper()}</h2>
+        <h4 style="margin:0; opacity:0.9;">{icon} MQ-2 (Smoke Detection)</h4>
+        <h2 style="margin:10px 0; font-size:2rem;">{label_text}</h2>
         <p style="margin:0;">Confidence: {p['confidence']}%</p>
         <p style="margin:5px 0 0 0; font-size:1.5rem;">{st.session_state.sensor_data['mq2']:.1f} ppm</p>
     </div>
@@ -292,12 +294,14 @@ with col2:
 # MQ-7 Card
 with col3:
     p = st.session_state.predictions['mq7']
+    # Translate label to Indonesian
+    label_text = "BERBAHAYA!" if p['label'] == "smoke" else "NORMAL"
     color = "#ef4444" if p['label'] == "smoke" else "#10b981"
     icon = "☠️" if p['label'] == "smoke" else "✅"
     st.markdown(f"""
     <div class="sensor-card" style="background: linear-gradient(135deg, {color}, {color}cc);">
-        <h4 style="margin:0; opacity:0.9;">{icon} MQ-7 (CO/Gas)</h4>
-        <h2 style="margin:10px 0; font-size:2rem;">{p['label'].upper()}</h2>
+        <h4 style="margin:0; opacity:0.9;">{icon} MQ-7 (CO/Gas Detection)</h4>
+        <h2 style="margin:10px 0; font-size:2rem;">{label_text}</h2>
         <p style="margin:0;">Confidence: {p['confidence']}%</p>
         <p style="margin:5px 0 0 0; font-size:1.5rem;">{st.session_state.sensor_data['mq7']:.1f} ppm</p>
     </div>
